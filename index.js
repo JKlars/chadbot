@@ -96,7 +96,7 @@ class Commands {
         catch(err) {
 
             console.log(err)
-            msg.channel.createMessage("Something went wrong!");
+            msg.channel.createMessage("Something went wrong!" + err);
 
         }
 
@@ -135,7 +135,7 @@ class Commands {
             if(channelId == undefined) throw "Please enter a voice channel";
             if(queue.length < 1) throw "There is nothing in the queue";
 
-            if(queue.length < 1) {
+            if(queue.length < 2) {
 
                 bot.leaveVoiceChannel(channelId);
 
