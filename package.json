@@ -1,0 +1,25 @@
+{
+  "name": "chadbot",
+  "version": "1.0.0",
+  "description": "A discord bot with a variety of functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JKlars/chadbot.git"
+  },
+  "author": "JKlar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JKlars/chadbot/issues"
+  },
+  "homepage": "https://github.com/JKlars/chadbot#readme",
+  "dependencies": {
+    "eris": "^0.17.1",
+    "youtube-search-without-api-key": "^1.0.7",
+    "ytdl-core": "^4.11.1",
+    "ytsr": "^3.8.0"
+  }
+}
