@@ -10,9 +10,11 @@ bot.on('ready', () => {
 
 });
 
+bot.editStatus(config.activity);
+
 bot.on("messageCreate", (msg) => {
 
-    if(msg.content.includes(config.prefix)) {
+    if(msg.content.includes(config.prefix) && msg.author.bot == false) {
 
         if(msg.content.includes("play")) {
 
@@ -29,6 +31,12 @@ bot.on("messageCreate", (msg) => {
         if(msg.content.includes("queue")) {
 
             commands.listQueue(msg, bot);
+
+        }
+
+        if(msg.content.includes("help")) {
+
+            commands.listHelp(msg);
 
         }
 

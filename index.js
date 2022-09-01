@@ -166,6 +166,14 @@ class Commands {
 
     }
 
+    static listHelp(msg) {
+
+        msg.channel.createMessage("!play <arg> -- Will play the top yt result of your input or if something is currently playing add it to the queue" + "\n"
+        + "!skip -- Will stop playback and go to the next song in the queue or disconnect the bot if the queue is empty" + "\n"
+        + "!queue -- Will list the queue");
+
+    }
+
 }
 
 module.exports = Commands;
