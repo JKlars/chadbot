@@ -18,6 +18,7 @@
   "homepage": "https://github.com/JKlars/chadbot#readme",
   "dependencies": {
     "eris": "^0.17.1",
+    "node-fetch": "^2.6.6",
     "youtube-search-without-api-key": "^1.0.7",
     "ytdl-core": "^4.11.1",
     "ytsr": "^3.8.0"

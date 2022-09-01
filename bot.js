@@ -40,6 +40,12 @@ bot.on("messageCreate", (msg) => {
 
         }
 
+        if(msg.content.includes("poll")) {
+
+            commands.newPoll(msg);
+
+        }
+
     }
 
 });

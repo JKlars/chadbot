@@ -170,7 +170,31 @@ class Commands {
 
         msg.channel.createMessage("!play <arg> -- Will play the top yt result of your input or if something is currently playing add it to the queue" + "\n"
         + "!skip -- Will stop playback and go to the next song in the queue or disconnect the bot if the queue is empty" + "\n"
-        + "!queue -- Will list the queue");
+        + "!queue -- Will list the queue" + "\n"
+        + "!poll <arg> -- Will create a poll for your input");
+
+    }
+
+    static newPoll(msg) {
+
+        try {
+
+            let query = msg.content.substring(6);
+            msg.channel.createMessage(query).then(pollMsg => {
+
+                pollMsg.addReaction("✅");
+                pollMsg.addReaction("❌");
+
+            });
+
+        }
+
+        catch(err) {
+
+            console.log(err);
+            msg.channel.createMessage("Something went wrong!");
+
+        }
 
     }
 
