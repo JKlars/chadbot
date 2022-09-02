@@ -3,7 +3,6 @@ const eris = require('eris');
 const bot = new eris.Client(config.token);
 const commands = require('./index.js');
 
-
 bot.on('ready', () => {
 
     console.log('Connected');
@@ -43,6 +42,24 @@ bot.on("messageCreate", (msg) => {
         if(msg.content.includes("poll")) {
 
             commands.newPoll(msg);
+
+        }
+
+        if(msg.content.includes("champ")) {
+
+            commands.searchChamp(msg)
+
+        }
+
+        if(msg.content.includes("account")) {
+
+            commands.searchAccount(msg);
+
+        }
+
+        if(msg.content.includes("twitch")) {
+
+            commands.searchTwitch(msg);
 
         }
 

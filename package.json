@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/JKlars/chadbot#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "eris": "^0.17.1",
     "node-fetch": "^2.6.6",
     "youtube-search-without-api-key": "^1.0.7",

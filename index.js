@@ -1,5 +1,10 @@
 const ytdl = require('ytdl-core');
+const config = require('./config.json');
 const yts = require('youtube-search-without-api-key');
+const axios = require('axios').default;
+const fs = require('fs');
+const gApi = config.googleKey;
+const gSE = config.googleSE;
 const queue = [];
 const options = {
 
@@ -171,7 +176,10 @@ class Commands {
         msg.channel.createMessage("!play <arg> -- Will play the top yt result of your input or if something is currently playing add it to the queue" + "\n"
         + "!skip -- Will stop playback and go to the next song in the queue or disconnect the bot if the queue is empty" + "\n"
         + "!queue -- Will list the queue" + "\n"
-        + "!poll <arg> -- Will create a poll for your input");
+        + "!poll <arg> -- Will create a poll for your input" + "\n"
+        + "!champ <arg> -- Will grab the op.gg information for that champion. Please enter champions name with no spaces and all lowercase" + "\n"
+        + "!account <arg> <arg> -- Will search for a summoners op.gg account. The first argument should be the regional identifier for the account. Format the account name in lower case and no spaces" + "\n"
+        + "!twitch <arg> -- Will search twitch for an account");
 
     }
 
@@ -192,9 +200,83 @@ class Commands {
         catch(err) {
 
             console.log(err);
+            msg.channel.createMessage("Something went wrong! " + err);
+
+        }
+
+    }
+
+    static searchChamp(msg) {
+
+        try {
+
+            let query = msg.content.substring(7);
+            let champList = fs.readFileSync('files/champs.txt', 'utf8');
+            if(champList.includes(query)) {
+
+                msg.channel.createMessage("https://na.op.gg/champions/" + query);
+
+            }
+
+            else {
+
+                throw "Could not find a champion with that name. Try formatting it with no spaces, apostrophes and all lower case"
+
+            }
+
+        }
+
+        catch(err) {
+
+            console.log(err);
+            msg.channel.createMessage("Something went wrong! " + err);
+
+        }
+
+
+    }
+
+    static searchAccount(msg) {
+
+        try {
+
+            let queryLocal = msg.content.substring(9, 11)
+            let queryName = msg.content.substring(12);
+            if(queryName.includes(" ")) throw "Please format name without spaces"
+            msg.channel.createMessage("https://na.op.gg/summoners/" + queryLocal + "/" + queryName);
+
+        }
+
+        catch(err) {
+
+            console.log(err);
+            msg.channel.createMessage("Something went wrong! " + err);
+
+        }
+
+    }
+
+    static searchTwitch(msg) {
+
+        try {
+
+            let query = msg.content.substring(8);
+            axios.get("https://www.googleapis.com/customsearch/v1?key=" + gApi + gSE + query)
+                .then(response => {
+
+                    msg.channel.createMessage(response.data.items[0].link);
+
+                })
+
+        }
+
+        catch(err) {
+
+            console.log(err);
             msg.channel.createMessage("Something went wrong!");
 
         }
+
 
     }
 
