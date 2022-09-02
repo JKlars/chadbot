@@ -280,6 +280,37 @@ class Commands {
 
     }
 
+    static playAugh(msg, bot) {
+
+        try {
+    
+            let channelId = msg.member.voiceState.channelID;
+
+            bot.joinVoiceChannel(channelId).then(connection => {
+
+                connection.play('files/augh.mp3');
+
+                connection.once("end", () => {
+
+                    connection.stopPlaying();
+                    bot.leaveVoiceChannel(channelId);
+
+                })
+
+            }) 
+
+        }
+
+        catch(err) {
+
+            console.log(err);
+            msg.channel.createMessage("Something went wrong!");
+
+        }
+
+
+    }
+
 }
 
 module.exports = Commands;
