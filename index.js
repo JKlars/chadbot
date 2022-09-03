@@ -3,6 +3,7 @@ const config = require('./config.json');
 const yts = require('youtube-search-without-api-key');
 const axios = require('axios').default;
 const fs = require('fs');
+const { get } = require('http');
 const gApi = config.googleKey;
 const gSE = config.googleSE;
 const queue = [];
@@ -181,7 +182,8 @@ class Commands {
         + "!account <arg> <arg> -- Will search for a summoners op.gg account. The first argument should be the regional identifier for the account. Format the account name in lower case and no spaces" + "\n"
         + "!twitch <arg> -- Will search Twitch for the keyword" + "\n"
         + "!youtube <arg> -- Will search Youtube for the keyword" + "\n"
-        + "!mal <arg> -- Will search MAL for the keyword");
+        + "!mal <arg> -- Will search MAL for the keyword" + "\n"
+        + "!random <arg> <arg2> etc -- Will randomly choose one of the arguments supplied. You can have as many as you want");
 
     }
 
@@ -363,6 +365,25 @@ class Commands {
 
         }
 
+
+    }
+
+    static random(msg) {
+
+        try {
+
+            let query = msg.content.substring(8);
+            let choices = query.split(" ");
+            msg.channel.createMessage(choices[Math.floor(Math.random() * choices.length)]);
+
+        }
+
+        catch(err) {
+
+            console.log(err);
+            msg.channel.createMessage("Something went wrong!");
+
+        }
 
     }
 

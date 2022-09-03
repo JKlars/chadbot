@@ -75,6 +75,12 @@ bot.on("messageCreate", (msg) => {
 
         }
 
+        if(msg.content.includes("random")) {
+
+            commands.random(msg);
+
+        }
+
     }
 
 });
