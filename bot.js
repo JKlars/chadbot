@@ -75,12 +75,6 @@ bot.on("messageCreate", (msg) => {
 
         }
 
-        if(msg.content.includes("augh")) {
-
-            commands.playAugh(msg, bot);
-
-        }
-
     }
 
 });
