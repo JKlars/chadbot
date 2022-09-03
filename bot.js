@@ -63,6 +63,18 @@ bot.on("messageCreate", (msg) => {
 
         }
 
+        if(msg.content.includes("youtube")) {
+
+            commands.searchYoutube(msg);
+
+        }
+
+        if(msg.content.includes("mal")) {
+
+            commands.searchMal(msg);
+
+        }
+
         if(msg.content.includes("augh")) {
 
             commands.playAugh(msg, bot);

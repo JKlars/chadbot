@@ -179,7 +179,9 @@ class Commands {
         + "!poll <arg> -- Will create a poll for your input" + "\n"
         + "!champ <arg> -- Will grab the op.gg information for that champion. Please enter champions name with no spaces and all lowercase" + "\n"
         + "!account <arg> <arg> -- Will search for a summoners op.gg account. The first argument should be the regional identifier for the account. Format the account name in lower case and no spaces" + "\n"
-        + "!twitch <arg> -- Will search twitch for an account");
+        + "!twitch <arg> -- Will search Twitch for the keyword" + "\n"
+        + "!youtube <arg> -- Will search Youtube for the keyword" + "\n"
+        + "!mal <arg> -- Will search MAL for the keyword");
 
     }
 
@@ -264,7 +266,91 @@ class Commands {
             axios.get("https://www.googleapis.com/customsearch/v1?key=" + gApi + gSE + query)
                 .then(response => {
 
-                    msg.channel.createMessage(response.data.items[0].link);
+                    console.log(response.data);
+                    for(var i = 0; i < response.data.items.length; i ++) {
+
+                        if(response.data.items[i].displayLink == 'www.twitch.tv') {
+
+                            msg.channel.createMessage(response.data.items[i].link);
+                            break;
+
+                        }
+                        
+
+                    }
+                    
+
+                })
+
+        }
+
+        catch(err) {
+
+            console.log(err);
+            msg.channel.createMessage("Something went wrong!");
+
+        }
+
+
+    }
+
+    static searchYoutube(msg) {
+
+        try {
+
+            let query = msg.content.substring(8);
+            axios.get("https://www.googleapis.com/customsearch/v1?key=" + gApi + gSE + query)
+                .then(response => {
+
+                    console.log(response.data);
+                    for(var i = 0; i < response.data.items.length; i ++) {
+
+                        if(response.data.items[i].displayLink == 'www.youtube.com') {
+
+                            msg.channel.createMessage(response.data.items[i].link);
+                            break;
+
+                        }
+                        
+
+                    }
+                    
+
+                })
+
+        }
+
+        catch(err) {
+
+            console.log(err);
+            msg.channel.createMessage("Something went wrong!");
+
+        }
+
+
+    }
+
+    static searchMal(msg) {
+
+        try {
+
+            let query = msg.content.substring(8);
+            axios.get("https://www.googleapis.com/customsearch/v1?key=" + gApi + gSE + query)
+                .then(response => {
+
+                    console.log(response.data);
+                    for(var i = 0; i < response.data.items.length; i ++) {
+
+                        if(response.data.items[i].displayLink == 'myanimelist.net') {
+
+                            msg.channel.createMessage(response.data.items[i].link);
+                            break;
+
+                        }
+                        
+
+                    }
+                    
 
                 })
 
