@@ -85,6 +85,4 @@ bot.on("messageCreate", (msg) => {
 
 });
 
-
-
 bot.connect();

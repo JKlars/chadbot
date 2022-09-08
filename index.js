@@ -373,6 +373,7 @@ class Commands {
         try {
 
             let query = msg.content.substring(8);
+            if(query == undefined) throw "Please enter atleast one argument (yeah you can have 1 if you just like wasting time)"
             let choices = query.split(" ");
             msg.channel.createMessage(choices[Math.floor(Math.random() * choices.length)]);
 
@@ -381,7 +382,7 @@ class Commands {
         catch(err) {
 
             console.log(err);
-            msg.channel.createMessage("Something went wrong!");
+            msg.channel.createMessage("Something went wrong! " + err);
 
         }
 
